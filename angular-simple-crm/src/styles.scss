@@ -1,0 +1,73 @@
+@import "~@angular/material/theming";
+@include mat-core();
+
+$primary: (
+  Main: #00657e,
+  contrast: (
+    Main: #fff,
+    Light: #fff,
+    Dark: #fff,
+  ),
+);
+$accent: (
+  Main: #818181,
+  contrast: (
+    Main: #f5f5f5,
+    Light: #000,
+    Dark: #fff,
+  ),
+);
+$warn: $mat-red;
+
+$custom-theme-primary: mat-palette($primary, Main);
+$custom-theme-accent: mat-palette($accent, Main);
+$custom-theme-warn: mat-palette($warn, A200, A400, A700);
+
+$custom-theme: mat-light-theme(
+  $custom-theme-primary,
+  $custom-theme-accent,
+  $custom-theme-warn
+);
+
+@include angular-material-theme($custom-theme);
+
+$dark-custom-theme: mat-dark-theme(
+  $custom-theme-primary,
+  $custom-theme-accent,
+  $custom-theme-warn
+);
+
+.dark-theme {
+  @include angular-material-theme($dark-custom-theme);
+
+  ::-webkit-scrollbar {
+    background: transparent;
+    width: 10px;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: #1a1a1a;
+  }
+}
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+.primary-color {
+  color: mat-color($primary) !important;
+}
+
+.accent-color {
+  color: mat-color($accent) !important;
+}
+
+app-screen-content {
+  width: 100%;
+}
